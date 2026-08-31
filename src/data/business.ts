@@ -18,6 +18,8 @@ export const business = {
 
   // No physical storefront — service-area business.
   serviceAreaCenter: "Raleigh, NC",
+  serviceAreaCenterLat: 35.7796,
+  serviceAreaCenterLng: -78.6382,
   serviceAreaRadiusMiles: 50,
 
   // TODO: confirm real hours

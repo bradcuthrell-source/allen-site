@@ -8,10 +8,18 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://allensproservices.com',
+  trailingSlash: 'never',
+  build: {
+    format: 'file'
+  },
 
   vite: {
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap()]
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/thank-you')
+    })
+  ]
 });

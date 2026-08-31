@@ -30,7 +30,7 @@ const currentYear = new Date().getFullYear();
     <div>
       <p class="font-semibold">Services</p>
       <ul class="mt-2 space-y-1 text-sm text-white/70">
-        {services.map((s) => <li><a href="/services" class="hover:text-white">{s.name}</a></li>)}
+        {services.map((s) => <li><a href={`/services#${s.slug}`} class="hover:text-white">{s.name}</a></li>)}
       </ul>
     </div>
 

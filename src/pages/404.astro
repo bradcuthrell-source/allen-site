@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { business } from "../data/business";
+
+const navLinks = [
+  { href: "/services", label: "Our Services" },
+  { href: "/service-area", label: "Service Areas" },
+  { href: "/contact", label: "Contact Us" },
+];
+---
+
+<Layout
+  title={`Page Not Found | ${business.brandName}`}
+  description="The page you were looking for doesn't exist."
+  noindex
+>
+  <section class="mx-auto max-w-2xl px-4 py-24 text-center">
+    <p class="text-sm font-bold uppercase tracking-wider text-brand-red">404</p>
+    <h1 class="mt-2 text-4xl font-extrabold text-brand-black">This page doesn't exist</h1>
+    <p class="mt-4 text-lg text-black/70">
+      The link may be broken or the page may have moved. Try one of these instead:
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-full border border-black/20 px-4 py-2 text-sm font-medium hover:border-brand-red hover:text-brand-red"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+    <a
+      href={business.phoneHref}
+      class="mt-8 inline-block rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
+    >
+      📞 Call {business.phoneDisplay}
+    </a>
+    <p class="mt-8">
+      <a href="/" class="text-brand-red hover:underline">&larr; Back to Home</a>
+    </p>
+  </section>
+</Layout>
