@@ -1,0 +1,40 @@
+// City list for programmatic /service-area/[city] pages.
+// Starting set: all of Wake County + a few high-population surrounding areas
+// (Durham, Chapel Hill, Carrboro, Clayton). All cities get the same templated
+// treatment for now — revisit deeper content for the bigger metro pages later.
+//
+// `nearby` is a curated list of geographically-close city slugs used for the
+// "areas we also serve" internal-link block on each city page.
+//
+// Census data (population, median household income, etc.) is intentionally
+// left out for now — add a `stats` field per city once pulled from the
+// Census ACS API, and the page template can render a data-driven sentence
+// when it's present.
+
+export type City = {
+  slug: string;
+  name: string;
+  county: string;
+  nearby: string[];
+};
+
+export const cities: City[] = [
+  { slug: "raleigh", name: "Raleigh", county: "Wake", nearby: ["cary", "garner", "knightdale", "wake-forest"] },
+  { slug: "cary", name: "Cary", county: "Wake", nearby: ["apex", "morrisville", "raleigh", "holly-springs"] },
+  { slug: "apex", name: "Apex", county: "Wake", nearby: ["cary", "holly-springs", "fuquay-varina", "morrisville"] },
+  { slug: "wake-forest", name: "Wake Forest", county: "Wake", nearby: ["raleigh", "rolesville", "knightdale", "durham"] },
+  { slug: "garner", name: "Garner", county: "Wake", nearby: ["raleigh", "clayton", "fuquay-varina", "angier"] },
+  { slug: "holly-springs", name: "Holly Springs", county: "Wake", nearby: ["apex", "fuquay-varina", "cary", "willow-spring"] },
+  { slug: "fuquay-varina", name: "Fuquay-Varina", county: "Wake", nearby: ["holly-springs", "angier", "garner", "willow-spring"] },
+  { slug: "morrisville", name: "Morrisville", county: "Wake", nearby: ["cary", "apex", "durham", "raleigh"] },
+  { slug: "knightdale", name: "Knightdale", county: "Wake", nearby: ["raleigh", "wendell", "zebulon", "wake-forest"] },
+  { slug: "wendell", name: "Wendell", county: "Wake", nearby: ["knightdale", "zebulon", "rolesville", "raleigh"] },
+  { slug: "zebulon", name: "Zebulon", county: "Wake", nearby: ["wendell", "knightdale", "rolesville", "raleigh"] },
+  { slug: "rolesville", name: "Rolesville", county: "Wake", nearby: ["wake-forest", "wendell", "zebulon", "raleigh"] },
+  { slug: "angier", name: "Angier", county: "Harnett", nearby: ["fuquay-varina", "garner", "willow-spring", "clayton"] },
+  { slug: "willow-spring", name: "Willow Spring", county: "Wake", nearby: ["holly-springs", "fuquay-varina", "apex", "angier"] },
+  { slug: "clayton", name: "Clayton", county: "Johnston", nearby: ["garner", "raleigh", "angier", "wendell"] },
+  { slug: "durham", name: "Durham", county: "Durham", nearby: ["chapel-hill", "carrboro", "raleigh", "morrisville"] },
+  { slug: "chapel-hill", name: "Chapel Hill", county: "Orange", nearby: ["carrboro", "durham", "raleigh", "morrisville"] },
+  { slug: "carrboro", name: "Carrboro", county: "Orange", nearby: ["chapel-hill", "durham", "raleigh", "morrisville"] },
+];

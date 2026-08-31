@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LeadForm from "../components/LeadForm.astro";
+import { business } from "../data/business";
+---
+
+<Layout
+  title={`Contact Us | ${business.brandName}`}
+  description={`Get in touch with ${business.brandName} for a free quote on general maintenance, landscaping, hauling, or junk removal.`}
+>
+  <section class="bg-brand-black py-16 text-center text-white">
+    <h1 class="text-4xl font-extrabold">Contact Us</h1>
+    <p class="mx-auto mt-4 max-w-2xl px-4 text-white/80">
+      Call, email, or fill out the form below and we'll get back to you quickly.
+    </p>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold text-brand-black">Get In Touch</h2>
+      <ul class="mt-6 space-y-4 text-lg">
+        <li>
+          <span class="font-semibold">Phone:</span>
+          <a href={business.phoneHref} class="text-brand-red hover:underline">{business.phoneDisplay}</a>
+        </li>
+        <li>
+          <span class="font-semibold">Email:</span>
+          <a href={`mailto:${business.email}`} class="text-brand-red hover:underline">{business.email}</a>
+        </li>
+        <li>
+          <span class="font-semibold">Service Area:</span>
+          {business.serviceAreaRadiusMiles}-mile radius around {business.serviceAreaCenter}
+        </li>
+      </ul>
+      <div class="mt-6">
+        <p class="font-semibold">Hours</p>
+        <ul class="mt-2 space-y-1 text-black/70">
+          {business.hours.map((h) => <li>{h.days}: {h.hours}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <LeadForm sourcePage="contact" />
+  </section>
+</Layout>

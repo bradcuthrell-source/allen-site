@@ -1,0 +1,74 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import { business } from "../../data/business";
+import { cities, type City } from "../../data/cities";
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+interface Props {
+  city: City;
+}
+
+const { city } = Astro.props;
+
+const nearbyCities = city.nearby
+  .map((slug) => cities.find((c) => c.slug === slug))
+  .filter((c): c is City => Boolean(c));
+---
+
+<Layout
+  title={`${business.tagline} in ${city.name}, NC | ${business.brandName}`}
+  description={`${business.brandName} provides general maintenance, landscaping, hauling, and junk removal in ${city.name}, NC and surrounding ${city.county} County areas.`}
+>
+  <section class="bg-brand-black py-16 text-center text-white">
+    <h1 class="text-4xl font-extrabold sm:text-5xl">
+      Maintenance, Landscaping &amp; Hauling in {city.name}, NC
+    </h1>
+    <p class="mx-auto mt-4 max-w-2xl px-4 text-white/80">
+      {business.brandName} proudly serves {city.name} and the rest of {city.county} County with general
+      maintenance, landscaping, hauling, and junk removal.
+    </p>
+    <a
+      href={business.phoneHref}
+      class="mt-8 inline-block rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
+    >
+      📞 Call Now — {business.phoneDisplay}
+    </a>
+  </section>
+
+  <ServicesGrid heading={`Services Available in ${city.name}`} />
+
+  {
+    nearbyCities.length > 0 && (
+      <section class="bg-black/5 px-4 py-12 text-center">
+        <h2 class="text-xl font-semibold text-brand-black">Areas We Also Serve Near {city.name}</h2>
+        <div class="mx-auto mt-4 flex max-w-2xl flex-wrap justify-center gap-3">
+          {nearbyCities.map((nearby) => (
+            <a
+              href={`/service-area/${nearby.slug}`}
+              class="rounded-full border border-black/20 px-4 py-2 text-sm font-medium hover:border-brand-red hover:text-brand-red"
+            >
+              {nearby.name}, NC
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-center text-3xl font-bold text-brand-black">
+      Get a Free Quote in {city.name}
+    </h2>
+    <div class="mt-8">
+      <LeadForm sourcePage={`city:${city.slug}`} />
+    </div>
+  </section>
+</Layout>

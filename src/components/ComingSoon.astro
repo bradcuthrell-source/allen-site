@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  note: string;
+}
+
+const { label, note } = Astro.props;
+---
+
+<div class="rounded-lg border-2 border-dashed border-brand-red/40 bg-brand-red/5 p-8 text-center">
+  <p class="text-xs font-bold uppercase tracking-wider text-brand-red">🚧 Coming Soon — {label}</p>
+  <p class="mx-auto mt-2 max-w-md text-sm text-black/60">{note}</p>
+</div>

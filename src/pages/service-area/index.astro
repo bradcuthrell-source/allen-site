@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import { business } from "../../data/business";
+import { cities } from "../../data/cities";
+
+const countyGroups = Array.from(new Set(cities.map((c) => c.county))).map((county) => ({
+  county,
+  cities: cities.filter((c) => c.county === county),
+}));
+---
+
+<Layout
+  title={`Service Areas | ${business.brandName}`}
+  description={`${business.brandName} serves ${cities.length}+ towns within a ${business.serviceAreaRadiusMiles}-mile radius of ${business.serviceAreaCenter}, including Wake, Durham, and Orange counties.`}
+>
+  <section class="bg-brand-black py-16 text-center text-white">
+    <h1 class="text-4xl font-extrabold sm:text-5xl">Areas We Serve</h1>
+    <p class="mx-auto mt-4 max-w-2xl px-4 text-white/80">
+      Proudly serving homes and businesses within a {business.serviceAreaRadiusMiles}-mile radius of{" "}
+      {business.serviceAreaCenter}.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-16">
+    {
+      countyGroups.map((group) => (
+        <div class="mb-10">
+          <h2 class="text-xl font-semibold text-brand-black">{group.county} County</h2>
+          <div class="mt-4 flex flex-wrap gap-3">
+            {group.cities.map((city) => (
+              <a
+                href={`/service-area/${city.slug}`}
+                class="rounded-full border border-black/20 px-4 py-2 text-sm font-medium hover:border-brand-red hover:text-brand-red"
+              >
+                {city.name}, NC
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+    <p class="mt-4 text-sm text-black/60">
+      Don't see your town listed? <a href={business.phoneHref} class="text-brand-red hover:underline">Give us a call</a> —
+      we may still be able to help.
+    </p>
+  </section>
+
+  <section class="bg-black/5 px-4 py-16">
+    <h2 class="text-center text-3xl font-bold text-brand-black">Get a Free Quote</h2>
+    <div class="mt-8">
+      <LeadForm sourcePage="service-area-index" />
+    </div>
+  </section>
+</Layout>
