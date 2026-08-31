@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import LeadForm from "../components/LeadForm.astro";
 import ComingSoon from "../components/ComingSoon.astro";
 import { business } from "../data/business";
 import { cities } from "../data/cities";
+import heroImage from "../assets/allen-hero-image.png";
 
 const featuredCities = cities.slice(0, 8);
 
@@ -39,7 +41,7 @@ const faqs = [
   title={`${business.brandName} | Maintenance, Landscaping & Hauling in Raleigh, NC`}
   description={`${business.brandName} provides general maintenance, landscaping, hauling, and junk removal across the greater Raleigh, NC area. Call now for a free quote.`}
 >
-  <section class="bg-brand-black text-white">
+  <section class="overflow-hidden bg-brand-black bg-[linear-gradient(90deg,#1c1b1c_0%,#1c1b1c_40%,#171717_100%)] text-white">
     <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 lg:grid-cols-2">
       <div>
         <h1 class="text-4xl font-extrabold leading-tight sm:text-5xl">
@@ -78,6 +80,18 @@ const faqs = [
             <p class="mt-1 text-sm text-white/70">Locally Owned &amp; Operated</p>
           </div>
         </div>
+      </div>
+
+      <div class="hidden lg:block lg:-mr-[6vw] xl:-mr-[10vw]">
+        <Image
+          src={heroImage}
+          alt={`${business.brandName} work truck loaded with tools and equipment`}
+          widths={[550, 800, 1100, 1536]}
+          sizes="(min-width: 1024px) 640px, 100vw"
+          loading="eager"
+          class="w-full"
+          style="mask-image: linear-gradient(90deg, transparent 0%, #000 22%), linear-gradient(180deg, transparent 0%, #000 14%, #000 86%, transparent 100%); mask-composite: intersect; -webkit-mask-composite: source-in;"
+        />
       </div>
     </div>
   </section>
