@@ -6,12 +6,10 @@ export const business = {
   legalName: "Allen Enterprises, LLC",
   brandName: "Allen's Pro Services",
 
-  // TODO: replace with real phone number
-  phoneDisplay: "(919) 000-0000",
-  phoneHref: "tel:+19190000000",
+  phoneDisplay: "(919) 622-8643",
+  phoneHref: "tel:+19196228643",
 
-  // TODO: replace with real email
-  email: "info@allensproservices.com",
+  email: "allensproservices1@gmail.com",
 
   domain: "allensproservices.com",
   siteUrl: "https://allensproservices.com",
@@ -22,11 +20,9 @@ export const business = {
   serviceAreaCenterLng: -78.6382,
   serviceAreaRadiusMiles: 50,
 
-  // TODO: confirm real hours
   hours: [
-    { days: "Monday – Friday", hours: "7:00 AM – 6:00 PM" },
-    { days: "Saturday", hours: "8:00 AM – 4:00 PM" },
-    { days: "Sunday", hours: "Closed" },
+    { days: "Monday – Friday", hours: "8:00 AM – 5:00 PM" },
+    { days: "Saturday – Sunday", hours: "Closed" },
   ],
 
   tagline: "General Maintenance & Landscaping — Hauling & Removal",
