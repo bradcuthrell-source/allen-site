@@ -1,5 +1,5 @@
 ---
-import { business, services } from "../data/business";
+import { business, services, valueProps } from "../data/business";
 import { cities } from "../data/cities";
 
 const currentYear = new Date().getFullYear();
@@ -13,6 +13,7 @@ const currentYear = new Date().getFullYear();
       <p class="mt-4 text-sm text-white/70">
         Serving a {business.serviceAreaRadiusMiles}-mile radius around {business.serviceAreaCenter}
       </p>
+      <p class="mt-4 text-xs text-white/50">{valueProps.join(" • ")}</p>
     </div>
 
     <div>
@@ -25,6 +26,7 @@ const currentYear = new Date().getFullYear();
       <ul class="mt-2 space-y-1 text-sm text-white/70">
         {business.hours.map((h) => <li>{h.days}: {h.hours}</li>)}
       </ul>
+      <p class="mt-2 text-sm text-white/70">Call anytime — we'll get back to you.</p>
     </div>
 
     <div>

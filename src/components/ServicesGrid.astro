@@ -4,29 +4,33 @@ import { services } from "../data/business";
 interface Props {
   heading?: string;
   showLearnMore?: boolean;
+  /** Give the section a tinted background instead of the default white. */
+  tinted?: boolean;
 }
 
-const { heading = "Our Services", showLearnMore = false } = Astro.props;
+const { heading = "Our Services", showLearnMore = false, tinted = false } = Astro.props;
 ---
 
-<section class="mx-auto max-w-6xl px-4 py-16">
-  <h2 class="text-center text-3xl font-bold text-brand-black">{heading}</h2>
-  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-    {
-      services.map((service) => (
-        <div class="rounded-lg border border-black/10 p-6 shadow-sm transition hover:shadow-md">
-          <h3 class="text-xl font-semibold text-brand-red">{service.name}</h3>
-          <p class="mt-2 text-black/70">{service.shortDescription}</p>
-          {showLearnMore && (
-            <a
-              href={`/services#${service.slug}`}
-              class="mt-4 inline-block text-sm font-semibold text-brand-red hover:underline"
-            >
-              Learn More →
-            </a>
-          )}
-        </div>
-      ))
-    }
+<section class:list={["px-4 py-16", tinted && "bg-black/5"]}>
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-center text-3xl font-bold text-brand-black">{heading}</h2>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        services.map((service) => (
+          <div class="flex flex-col rounded-lg border border-black/10 p-6 shadow-sm transition hover:shadow-md">
+            <h3 class="text-xl font-semibold text-brand-red">{service.name}</h3>
+            <p class="mt-2 flex-1 text-black/70">{service.shortDescription}</p>
+            {showLearnMore && (
+              <a
+                href={`/services#${service.slug}`}
+                class="mt-4 inline-block text-sm font-semibold text-brand-red hover:underline"
+              >
+                Learn More →
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
   </div>
 </section>

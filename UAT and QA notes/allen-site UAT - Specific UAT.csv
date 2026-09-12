@@ -1,0 +1,9 @@
+Page,Element,Priority,Notes
+Home,Quote form,P1,Text is white and can't be read against the white text entry box
+All,Footer,P1,"9-5am hours, closed on weekends, call anytime note"
+All,Phone CTAs,P3,Change emoji's to phone icons - let me know if you need me to source those
+Home,Services,P3,"""Learn More"" should be aligned - maybe pin them to the bottom of the box, vs the bottom of the subheader text boxes above them"
+Home,Hero,P1,Remove phone number from hero call CTA
+Home,Meet the team,P1,let's just remove this section
+Home,All,P2,Services needs to have an off color to separate it better from the hero. This may change the other alternating color sections
+City Pages,Content,P2,"I want these to be beefed up with more content about the services offered (this can be templated, but variated by page to avoid any duplicate content issues). I would like a couple H2s and H3s with some text on each of these pages. And an FAQ section. Let me know if you have questions about this one"

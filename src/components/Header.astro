@@ -1,9 +1,11 @@
 ---
 import logo from "../assets/logo/logo-horizontal.png";
 import { business } from "../data/business";
+import PhoneIcon from "./icons/PhoneIcon.astro";
 
 const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/service-area", label: "Service Areas" },
   { href: "/contact", label: "Contact" },
@@ -37,7 +39,7 @@ const navLinks = [
         href={business.phoneHref}
         class="flex items-center gap-2 rounded-md bg-brand-red px-4 py-2 font-semibold text-white transition hover:bg-brand-red-dark"
       >
-        <span aria-hidden="true">📞</span>
+        <PhoneIcon class="h-4 w-4" />
         <span class="hidden sm:inline">{business.phoneDisplay}</span>
         <span class="sm:hidden">Call Now</span>
       </a>

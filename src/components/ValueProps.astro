@@ -1,0 +1,27 @@
+---
+// Sitewide trust bar — same-day service, free estimates, veteran/family-owned,
+// years in business. Used near the top of the home page and on city-page
+// heroes; source list lives in ../data/business so it only needs updating once.
+// Solid brand-red so it reads as a clean divider whether it sits under a white
+// hero (home) or a dark one (city pages) — no variant prop needed either way.
+import { valueProps } from "../data/business";
+---
+
+<div class="bg-brand-red py-4 text-white">
+  <ul class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 text-center text-sm font-semibold">
+    {
+      valueProps.map((prop) => (
+        <li class="flex items-center gap-2">
+          <svg class="h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0l-3.5-3.5a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          {prop}
+        </li>
+      ))
+    }
+  </ul>
+</div>

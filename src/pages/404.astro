@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { business } from "../data/business";
+import PhoneIcon from "../components/icons/PhoneIcon.astro";
 
 const navLinks = [
   { href: "/services", label: "Our Services" },
@@ -34,9 +35,10 @@ const navLinks = [
     </div>
     <a
       href={business.phoneHref}
-      class="mt-8 inline-block rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
+      class="mt-8 inline-flex items-center gap-2 rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
     >
-      📞 Call {business.phoneDisplay}
+      <PhoneIcon class="h-5 w-5" />
+      Call {business.phoneDisplay}
     </a>
     <p class="mt-8">
       <a href="/" class="text-brand-red hover:underline">&larr; Back to Home</a>

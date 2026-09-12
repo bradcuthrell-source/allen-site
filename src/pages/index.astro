@@ -3,8 +3,9 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import LeadForm from "../components/LeadForm.astro";
-import ComingSoon from "../components/ComingSoon.astro";
-import { business } from "../data/business";
+import ValueProps from "../components/ValueProps.astro";
+import PhoneIcon from "../components/icons/PhoneIcon.astro";
+import { business, valueProps } from "../data/business";
 import { cities } from "../data/cities";
 import heroImage from "../assets/hero-illustration.png";
 import yardCleanupBefore from "../assets/work/yard-cleanup-before.jpg";
@@ -12,8 +13,26 @@ import yardCleanupAfter from "../assets/work/yard-cleanup-after.jpg";
 import kitchenFlooring from "../assets/work/kitchen-flooring.jpg";
 import counterInstall from "../assets/work/ray-maintenance.jpg";
 import brushHauling from "../assets/work/brush-hauling.jpg";
+import rayPhoto from "../assets/team/ray-allen.jpg";
 
 const featuredCities = cities.slice(0, 8);
+
+const testimonials = [
+  {
+    quote: [
+      "I had a great experience with Allen's Pro Services. My backyard had gotten pretty overgrown, and they did a great job trimming trees and bushes, clearing out a ton of brush and overgrowth, and hauling everything away when he was finished.",
+      "The difference was night and day. I honestly didn't realize how much usable space we had in our backyard until everything was cleared out. It looks bigger, cleaner, and completely transformed. The guy who came out was super nice, worked hard, did a thorough job, and left everything looking great. I've already recommended them to my neighbors!",
+    ],
+    author: "Brad C.",
+  },
+  {
+    quote: [
+      "Ray did such an amazing job transforming my garden area into a relaxing masterpiece for me to enjoy.",
+      "He truly took a dull area of my yard and made it a place for my whole family and myself to enjoy. Thank you for listening to my wants and making them a reality!",
+    ],
+    author: "Julia C.",
+  },
+];
 
 const recentWork = [
   {
@@ -77,9 +96,10 @@ const faqs = [
         <div class="mt-8 flex flex-wrap gap-4">
           <a
             href={business.phoneHref}
-            class="rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
+            class="inline-flex items-center gap-2 rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
           >
-            📞 Call Now — {business.phoneDisplay}
+            <PhoneIcon class="h-5 w-5" />
+            Call Now
           </a>
           <a
             href="#quote"
@@ -122,148 +142,155 @@ const faqs = [
     </div>
   </section>
 
-  <ServicesGrid showLearnMore />
+  <ValueProps />
 
-  <section class="bg-black/5">
+  <ServicesGrid showLearnMore tinted />
+
+  <section>
     <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
       <div>
         <p class="text-sm font-bold uppercase tracking-wider text-brand-red">About Us</p>
         <h2 class="mt-2 text-3xl font-bold text-brand-black">
-          One Local Team for Maintenance, Landscaping &amp; Hauling
+          Run by a Veteran, Backed by a Family Business
         </h2>
         <p class="mt-4 text-black/70">
-          {business.brandName} is a locally owned, full-service operation covering general
-          maintenance, landscaping, hauling, and junk removal across the greater{" "}
-          {business.serviceAreaCenter} area. Instead of juggling calls to several different
-          contractors, one call to us covers it all.
+          {business.brandName} is owned and operated by Ray Allen, an Air Force veteran and
+          current reservist whose family has served North Carolina homeowners for dozens of
+          years. Ray brings the same integrity, duty, and excellence he learned in uniform to
+          every maintenance, landscaping, hauling, and junk removal job we take on.
         </p>
+        <a href="/about" class="mt-4 inline-block font-semibold text-brand-red hover:underline">
+          Read Ray's Story →
+        </a>
       </div>
-      <ComingSoon
-        label="Owner & Crew Photo"
-        note="A real photo of Allen and the crew will go here once we have one."
+      <Image
+        src={rayPhoto}
+        alt="Ray Allen, owner of Allen's Pro Services, standing in front of his work truck and trailer"
+        widths={[500, 900, 1200]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        class="w-full rounded-lg"
       />
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-center text-3xl font-bold text-brand-black">Recent Work</h2>
-    <p class="mx-auto mt-2 max-w-xl text-center text-black/70">
-      A few recent jobs around the Triangle — maintenance, flooring, yard cleanups, and hauling.
-    </p>
+  <section class="bg-black/5 px-4 py-16">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-3xl font-bold text-brand-black">Recent Work</h2>
+      <p class="mx-auto mt-2 max-w-xl text-center text-black/70">
+        A few recent jobs around the Triangle — maintenance, flooring, yard cleanups, and hauling.
+      </p>
 
-    <figure class="mt-10">
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div class="relative overflow-hidden rounded-lg border border-black/10">
-          <Image
-            src={yardCleanupBefore}
-            alt="Overgrown wooded backyard with a brush pile before cleanup"
-            widths={[480, 960, 1200]}
-            sizes="(min-width: 640px) 50vw, 100vw"
-            class="aspect-[4/3] w-full object-cover"
-          />
-          <span class="absolute left-3 top-3 rounded bg-brand-black/80 px-2 py-1 text-xs font-bold uppercase tracking-wide text-white">
-            Before
-          </span>
-        </div>
-        <div class="relative overflow-hidden rounded-lg border border-black/10">
-          <Image
-            src={yardCleanupAfter}
-            alt="The same backyard cleared and mulched with a new fire pit and chairs"
-            widths={[480, 960, 1200]}
-            sizes="(min-width: 640px) 50vw, 100vw"
-            class="aspect-[4/3] w-full object-cover"
-          />
-          <span class="absolute left-3 top-3 rounded bg-brand-red px-2 py-1 text-xs font-bold uppercase tracking-wide text-white">
-            After
-          </span>
-        </div>
-      </div>
-      <figcaption class="mt-3 text-center text-sm text-black/60">
-        Backyard cleanup &amp; fire-pit clearing — Wake County
-      </figcaption>
-    </figure>
-
-    <div class="mt-10 grid gap-6 sm:grid-cols-3">
-      {
-        recentWork.map((photo) => (
-          <figure class="overflow-hidden rounded-lg border border-black/10">
+      <figure class="mt-10">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="relative overflow-hidden rounded-lg border border-black/10">
             <Image
-              src={photo.src}
-              alt={photo.alt}
-              widths={[380, 760, 1140]}
-              sizes="(min-width: 640px) 33vw, 100vw"
+              src={yardCleanupBefore}
+              alt="Overgrown wooded backyard with a brush pile before cleanup"
+              widths={[480, 960, 1200]}
+              sizes="(min-width: 640px) 50vw, 100vw"
               class="aspect-[4/3] w-full object-cover"
             />
-            <figcaption class="px-4 py-3 text-sm font-medium text-black/70">
-              {photo.caption}
-            </figcaption>
-          </figure>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="bg-black/5 px-4 py-16">
-    <div class="mx-auto max-w-3xl">
-      <h2 class="text-center text-3xl font-bold text-brand-black">What Customers Say</h2>
-
-      <figure class="mx-auto mt-8 rounded-lg border border-black/10 bg-white p-8 shadow-sm">
-        <div class="flex justify-center gap-0.5 text-brand-red">
-          {
-            Array.from({ length: 5 }).map(() => (
-              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15.9 4.8 18.6l1-5.8L1.5 8.7l5.9-.9z" />
-              </svg>
-            ))
-          }
+            <span class="absolute left-3 top-3 rounded bg-brand-black/80 px-2 py-1 text-xs font-bold uppercase tracking-wide text-white">
+              Before
+            </span>
+          </div>
+          <div class="relative overflow-hidden rounded-lg border border-black/10">
+            <Image
+              src={yardCleanupAfter}
+              alt="The same backyard cleared and mulched with a new fire pit and chairs"
+              widths={[480, 960, 1200]}
+              sizes="(min-width: 640px) 50vw, 100vw"
+              class="aspect-[4/3] w-full object-cover"
+            />
+            <span class="absolute left-3 top-3 rounded bg-brand-red px-2 py-1 text-xs font-bold uppercase tracking-wide text-white">
+              After
+            </span>
+          </div>
         </div>
-        <span class="sr-only">Rated 5 out of 5 stars</span>
-        <blockquote class="mt-5 space-y-4 text-black/80">
-          <p>
-            I had a great experience with Allen's Pro Services. My backyard had gotten pretty
-            overgrown, and they did a great job trimming trees and bushes, clearing out a ton of
-            brush and overgrowth, and hauling everything away when he was finished.
-          </p>
-          <p>
-            The difference was night and day. I honestly didn't realize how much usable space we
-            had in our backyard until everything was cleared out. It looks bigger, cleaner, and
-            completely transformed. The guy who came out was super nice, worked hard, did a
-            thorough job, and left everything looking great. I've already recommended them to my
-            neighbors!
-          </p>
-        </blockquote>
-        <figcaption class="mt-6 text-center text-sm font-semibold text-brand-black">
-          — Brad C.
+        <figcaption class="mt-3 text-center text-sm text-black/60">
+          Backyard cleanup &amp; fire-pit clearing — Wake County
         </figcaption>
       </figure>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        {
+          recentWork.map((photo) => (
+            <figure class="overflow-hidden rounded-lg border border-black/10">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[380, 760, 1140]}
+                sizes="(min-width: 640px) 33vw, 100vw"
+                class="aspect-[4/3] w-full object-cover"
+              />
+              <figcaption class="px-4 py-3 text-sm font-medium text-black/70">
+                {photo.caption}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-center text-3xl font-bold text-brand-black">Proudly Serving the Triangle</h2>
-    <p class="mx-auto mt-2 max-w-xl text-center text-black/70">
-      A few of the communities we serve — see the full list of {cities.length}+ areas.
-    </p>
-    <div class="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-3">
-      {
-        featuredCities.map((city) => (
-          <a
-            href={`/service-area/${city.slug}`}
-            class="rounded-full border border-black/20 px-4 py-2 text-sm font-medium hover:border-brand-red hover:text-brand-red"
-          >
-            {city.name}, NC
-          </a>
-        ))
-      }
-    </div>
-    <div class="mt-6 text-center">
-      <a href="/service-area" class="font-semibold text-brand-red hover:underline">
-        View All Service Areas →
-      </a>
+  <section class="px-4 py-16">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="text-center text-3xl font-bold text-brand-black">What Customers Say</h2>
+
+      <div class="mx-auto mt-8 grid gap-6 sm:grid-cols-2">
+        {
+          testimonials.map((review) => (
+            <figure class="flex flex-col rounded-lg border border-black/10 bg-white p-8 shadow-sm">
+              <div class="flex justify-center gap-0.5 text-brand-red">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 15.9 4.8 18.6l1-5.8L1.5 8.7l5.9-.9z" />
+                  </svg>
+                ))}
+              </div>
+              <span class="sr-only">Rated 5 out of 5 stars</span>
+              <blockquote class="mt-5 flex-1 space-y-4 text-black/80">
+                {review.quote.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </blockquote>
+              <figcaption class="mt-6 text-center text-sm font-semibold text-brand-black">
+                — {review.author}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
     </div>
   </section>
 
   <section class="bg-black/5 px-4 py-16">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center text-3xl font-bold text-brand-black">Proudly Serving the Triangle</h2>
+      <p class="mx-auto mt-2 max-w-xl text-center text-black/70">
+        A few of the communities we serve — see the full list of {cities.length}+ areas.
+      </p>
+      <div class="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-3">
+        {
+          featuredCities.map((city) => (
+            <a
+              href={`/service-area/${city.slug}`}
+              class="rounded-full border border-black/20 bg-white px-4 py-2 text-sm font-medium hover:border-brand-red hover:text-brand-red"
+            >
+              {city.name}, NC
+            </a>
+          ))
+        }
+      </div>
+      <div class="mt-6 text-center">
+        <a href="/service-area" class="font-semibold text-brand-red hover:underline">
+          View All Service Areas →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-16">
     <div class="mx-auto max-w-3xl">
       <h2 class="text-center text-3xl font-bold text-brand-black">Frequently Asked Questions</h2>
       <div class="mt-8 space-y-3">
@@ -284,19 +311,6 @@ const faqs = [
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 py-16">
-    <h2 class="text-center text-3xl font-bold text-brand-black">Meet the Team</h2>
-    <p class="mx-auto mt-2 max-w-xl text-center text-black/70">
-      Names, roles, and photos of the crew will go here.
-    </p>
-    <div class="mt-8">
-      <ComingSoon
-        label="Team Bios"
-        note="Send crew names, roles, and headshots and we'll build out a team section."
-      />
-    </div>
-  </section>
-
   <section id="quote" class="bg-brand-black px-4 py-16 text-white">
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-bold">Get Your Free Quote</h2>
@@ -304,10 +318,7 @@ const faqs = [
         Tell us what you need and we'll get back to you quickly.
       </p>
       <ul class="mx-auto mt-6 flex max-w-xl flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/70">
-        <li>✓ Free Quotes</li>
-        <li>✓ Locally Owned</li>
-        <li>✓ Full-Service</li>
-        <li>✓ Serving the Triangle</li>
+        {valueProps.map((prop) => <li>✓ {prop}</li>)}
       </ul>
       <div class="mt-8">
         <LeadForm sourcePage="home" />

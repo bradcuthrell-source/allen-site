@@ -20,15 +20,15 @@ import { business } from "../data/business";
       <h2 class="text-2xl font-bold text-brand-black">Get In Touch</h2>
       <ul class="mt-6 space-y-4 text-lg">
         <li>
-          <span class="font-semibold">Phone:</span>
+          <span class="font-semibold">Phone: </span>
           <a href={business.phoneHref} class="text-brand-red hover:underline">{business.phoneDisplay}</a>
         </li>
         <li>
-          <span class="font-semibold">Email:</span>
+          <span class="font-semibold">Email: </span>
           <a href={`mailto:${business.email}`} class="text-brand-red hover:underline">{business.email}</a>
         </li>
         <li>
-          <span class="font-semibold">Service Area:</span>
+          <span class="font-semibold">Service Area: </span>
           {business.serviceAreaRadiusMiles}-mile radius around {business.serviceAreaCenter}
         </li>
       </ul>
