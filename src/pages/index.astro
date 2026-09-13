@@ -17,6 +17,9 @@ import rayPhoto from "../assets/team/ray-allen.jpg";
 
 const featuredCities = cities.slice(0, 8);
 
+// Hidden per client feedback (2026-09-12) until better photos are available.
+const showRecentWork = false;
+
 const testimonials = [
   {
     quote: [
@@ -93,20 +96,34 @@ const faqs = [
           General maintenance, landscaping, hauling, and junk removal — serving homes and
           businesses within {business.serviceAreaRadiusMiles} miles of {business.serviceAreaCenter}.
         </p>
-        <div class="mt-8 flex flex-wrap gap-4">
+        <div class="mt-8 flex gap-3 sm:gap-4">
           <a
             href={business.phoneHref}
-            class="inline-flex items-center gap-2 rounded-md bg-brand-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-brand-red-dark"
+            class="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-brand-red px-4 py-3 text-base font-semibold text-white transition hover:bg-brand-red-dark sm:flex-none sm:px-6 sm:text-lg"
           >
             <PhoneIcon class="h-5 w-5" />
             Call Now
           </a>
           <a
             href="#quote"
-            class="rounded-md border border-brand-red/40 px-6 py-3 text-lg font-semibold text-brand-red transition hover:bg-brand-red/5"
+            class="flex-1 rounded-md border border-brand-red/40 px-4 py-3 text-center text-base font-semibold text-brand-red transition hover:bg-brand-red/5 sm:flex-none sm:px-6 sm:text-lg"
           >
             Get a Free Quote
           </a>
+        </div>
+
+        <div class="mt-10 lg:hidden">
+          <Image
+            src={heroImage}
+            alt={`${business.brandName} crew mowing, painting, plumbing, and hauling junk beneath a rooftop formed by the ${business.brandName} "A" logo`}
+            widths={[380, 550, 800]}
+            sizes="(min-width: 640px) 420px, 80vw"
+            class="mx-auto w-4/5 max-w-sm sm:w-full"
+          />
+          <p class="mx-auto -mt-2 max-w-sm text-center text-base font-bold leading-snug text-brand-black">
+            For all your home and business needs{" "}
+            <span class="whitespace-nowrap">— <span class="text-brand-red">we've got you covered</span></span>
+          </p>
         </div>
 
         <div class="mt-10 grid grid-cols-3 gap-4 border-t border-black/10 pt-6">
@@ -173,6 +190,7 @@ const faqs = [
     </div>
   </section>
 
+  {showRecentWork && (
   <section class="bg-black/5 px-4 py-16">
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-bold text-brand-black">Recent Work</h2>
@@ -232,8 +250,9 @@ const faqs = [
       </div>
     </div>
   </section>
+  )}
 
-  <section class="px-4 py-16">
+  <section class="bg-black/5 px-4 py-16">
     <div class="mx-auto max-w-5xl">
       <h2 class="text-center text-3xl font-bold text-brand-black">What Customers Say</h2>
 
@@ -264,7 +283,7 @@ const faqs = [
     </div>
   </section>
 
-  <section class="bg-black/5 px-4 py-16">
+  <section class="px-4 py-16">
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-bold text-brand-black">Proudly Serving the Triangle</h2>
       <p class="mx-auto mt-2 max-w-xl text-center text-black/70">
@@ -290,7 +309,7 @@ const faqs = [
     </div>
   </section>
 
-  <section class="px-4 py-16">
+  <section class="bg-black/5 px-4 py-16">
     <div class="mx-auto max-w-3xl">
       <h2 class="text-center text-3xl font-bold text-brand-black">Frequently Asked Questions</h2>
       <div class="mt-8 space-y-3">
