@@ -8,9 +8,10 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  reviews?: { author: string; quote: string[] }[];
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, reviews } = Astro.props;
 
 // Normalize to a clean, slash-free path so canonical matches the sitemap
 // regardless of the `file` build format (which yields /foo.html at render time).
@@ -42,6 +43,26 @@ const jsonLd = {
     opens: "08:00",
     closes: "17:00",
   },
+  ...(reviews && reviews.length > 0
+    ? {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5",
+          bestRating: "5",
+          reviewCount: reviews.length,
+        },
+        review: reviews.map((r) => ({
+          "@type": "Review",
+          author: { "@type": "Person", name: r.author },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5",
+          },
+          reviewBody: r.quote.join(" "),
+        })),
+      }
+    : {}),
 };
 ---
 
